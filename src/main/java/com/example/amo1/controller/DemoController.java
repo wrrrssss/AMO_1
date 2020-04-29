@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-@CrossOrigin
+
 @RestController
 @RequestMapping(value = "/demo")
 public class DemoController {
 
-    @Resource(name = "demoService")
+    @Resource
     private DemoService demoService;
 
     @RequestMapping(value = "/login")
@@ -30,5 +30,11 @@ public class DemoController {
         System.out.println(demo.getPassword());
 //        return new ResultMessage(true,"注册成功");
         return demoService.register(demo);
+    }
+
+    @RequestMapping("insert")
+    public ResultMessage insert(@RequestBody Demo demo) {
+        demoService.insert(demo);
+        return new ResultMessage(true,"注册成功");
     }
 }

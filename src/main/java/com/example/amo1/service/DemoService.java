@@ -45,4 +45,7 @@ public interface DemoService {
     ResultMessage deleteDemo(int id);
 
 
+    void insert(Demo demo);
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.amo1.service.Impl;
 
+import com.example.amo1.mapper.DmMapper;
 import com.example.amo1.mapper.DemoMapper;
 import com.example.amo1.model.Demo;
 import com.example.amo1.model.ResultMessage;
@@ -7,11 +8,14 @@ import com.example.amo1.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service(value = "demoService")
+@Service
 public class DemoServiceImpl implements DemoService {
 
     @Autowired
     private DemoMapper demoMapper;
+
+    @Autowired
+    private DmMapper dmMapper;
 
     @Override
     public ResultMessage register(Demo demo) {
@@ -38,5 +42,10 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public ResultMessage deleteDemo(int id) {
         return null;
+    }
+
+    @Override
+    public void insert(Demo demo) {
+        dmMapper.insert(demo);
     }
 }
