@@ -6,7 +6,7 @@ package com.example.amo1.model;
  */
 public class Demo {
 
-    private int id;
+    private Integer id;
     private String username;
     private String password;
 
