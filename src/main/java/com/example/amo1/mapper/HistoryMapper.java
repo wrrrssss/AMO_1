@@ -1,20 +1,24 @@
 package com.example.amo1.mapper;
 
 import com.example.amo1.model.History;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
- * @class HistoryMapper
- * @description 浏览记录模块
- *
- * @author wrs
- * @date 2020/4/27
+ * 历史记录模块 mapper
+ * by wrs
  */
-@Mapper
+
 public interface HistoryMapper {
 
-    @Insert("insert into yummy.account(user_id,manuscript_id,check_time) " +
-            "values (#{user_id},#{manuscript_id},#{check_time})")
+    //新增浏览记录
     void insert(History history);
+
+    //删除某一条记录
+    void delete(Integer id);
+
+    //获取用户所有记录
+    List<History> getAllHistoryOfAUser(Integer user_id);
+
 }

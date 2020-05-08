@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.amo1.mapper.ListsMapper">
+
+    <resultMap id="ListsMap" type="com.example.amo1.model.Lists">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_id" jdbcType="INTEGER" property="user_id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="create_time" jdbcType="VARCHAR" property="create_time"/>
+    </resultMap>
+
+
+    <delete id="delete" parameterType="java.lang.Integer">
+    delete from lists
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insert" parameterType="com.example.amo1.model.Lists"
+            useGeneratedKeys="true" keyProperty="id">
+    insert into lists(user_id,name,create_time)
+    values (#{user_id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{create_time,jdbcType=VARCHAR})
+  </insert>
+
+    <select id="getAllList" parameterType="java.lang.Integer" resultMap="ListsMap">
+    select *
+    from lists
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </select>
+
+    <update id="modify" parameterType="com.example.amo1.model.Lists">
+    update lists
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="ifExist" parameterType="com.example.amo1.model.Lists" resultMap="ListsMap">
+    select *
+    from lists
+    where user_id = #{user_id,jdbcType=INTEGER} and name = #{name,jdbcType=VARCHAR}
+    LIMIT 1
+  </select>
+
+    <select id="ifDelete" parameterType="java.lang.Integer" resultMap="ListsMap">
+    select *
+    from lists
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+</mapper>

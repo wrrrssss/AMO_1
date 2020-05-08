@@ -1,9 +1,17 @@
 package com.example.amo1.model;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 历史记录
+ * by wrs
+ */
 public class History {
+
+    //id
+    private int id;
 
     //用户id
     private int user_id;
@@ -12,7 +20,7 @@ public class History {
     private int manuscript_id;
 
     //浏览时间
-    private Date check_time;
+    private String check_time;
 
     public History(){
 
@@ -22,11 +30,10 @@ public class History {
     public History(String user_id, String manuscript_id){
         this.setUser_id(Integer.parseInt(user_id));
         this.setManuscript_id(Integer.parseInt(manuscript_id));
-        this.setCheck_time(new Date());
-//        //设置日期格式
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        //获取当前时间
-//        System.out.println(df.format(new Date()));
+        //设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //获取当前时间
+        this.setCheck_time(df.format(new Date()));
     }
 
     public int getUser_id() {
@@ -45,11 +52,19 @@ public class History {
         this.manuscript_id = manuscript_id;
     }
 
-    public Date getCheck_time() {
+    public String getCheck_time() {
         return check_time;
     }
 
-    public void setCheck_time(Date check_time) {
+    public void setCheck_time(String check_time) {
         this.check_time = check_time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
