@@ -33,4 +33,9 @@
     select id, user_id, username, content
     from manuscript
   </select>
+  <select id="selectFive" resultMap="BaseResultMap">
+    select *
+    from manuscript
+    limit 5
+  </select>
 </mapper>
