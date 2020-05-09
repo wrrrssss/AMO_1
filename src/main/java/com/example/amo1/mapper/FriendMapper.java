@@ -10,7 +10,7 @@ public interface FriendMapper {
 
     Friend selectByPrimaryKey(Integer id);
 
-    List<Friend> selectAll();
+    List<Friend> selectAll(Integer group_id);
 
     int updateByPrimaryKey(Friend record);
 }

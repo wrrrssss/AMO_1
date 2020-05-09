@@ -13,7 +13,7 @@ public class Friend {
 
     private String remarks;
 
-    private String groups;
+    private Integer groupsId;
 
     public Integer getId() {
         return id;
@@ -63,11 +63,11 @@ public class Friend {
         this.remarks = remarks == null ? null : remarks.trim();
     }
 
-    public String getGroups() {
-        return groups;
+    public Integer getGroupsId() {
+        return groupsId;
     }
 
-    public void setGroups(String groups) {
-        this.groups = groups == null ? null : groups.trim();
+    public void setGroupsId(Integer groupsId) {
+        this.groupsId = groupsId;
     }
 }
