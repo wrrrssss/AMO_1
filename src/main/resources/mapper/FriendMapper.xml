@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.amo1.mapper.FriendMapper">
+  <resultMap id="BaseResultMap" type="com.example.amo1.model.Friend">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="friend_id" jdbcType="INTEGER" property="friendId" />
+    <result column="friend_name" jdbcType="VARCHAR" property="friendName" />
+    <result column="begin_time" jdbcType="VARCHAR" property="beginTime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="groups" jdbcType="VARCHAR" property="groups" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from friend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.amo1.model.Friend">
+    insert into friend (id, user_id, friend_id, 
+      friend_name, begin_time, remarks, 
+      groups)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{friendId,jdbcType=INTEGER}, 
+      #{friendName,jdbcType=VARCHAR}, #{beginTime,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{groups,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.Friend">
+    update friend
+    set user_id = #{userId,jdbcType=INTEGER},
+      friend_id = #{friendId,jdbcType=INTEGER},
+      friend_name = #{friendName,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      groups = #{groups,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, friend_id, friend_name, begin_time, remarks, groups
+    from friend
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, friend_id, friend_name, begin_time, remarks, groups
+    from friend
+  </select>
+</mapper>
