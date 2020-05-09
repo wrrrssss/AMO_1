@@ -7,6 +7,8 @@ import com.example.amo1.service.FriendService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +26,10 @@ public class FriendController {
     //新增好友
     @RequestMapping(value = "/addFriend")
     public ResultMessage addFriend(@RequestBody Friend friend){
+        //设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //获取当前时间
+        friend.setBeginTime(df.format(new Date()));
         return friendService.addFriend(friend);
     }
 
