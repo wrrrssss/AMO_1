@@ -1,0 +1,37 @@
+{
+  "doc": {
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "userId": {
+        "type": "integer"
+      },
+      "username": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "content": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "publishDate":{
+        "type":"long"
+      },
+      "manuscriptData":{
+          "love": {
+            "type": "integer"
+          },
+          "forward": {
+            "type": "integer"
+          },
+          "comment": {
+            "type": "integer"
+          },
+          "collection": {
+            "type": "integer"
+          }
+      }
+    }
+  }
+}
