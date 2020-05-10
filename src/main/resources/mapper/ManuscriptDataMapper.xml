@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.amo1.mapper.ManuscriptDataMapper">
+  <resultMap id="BaseResultMap" type="com.example.amo1.model.ManuscriptData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="love" jdbcType="INTEGER" property="love" />
+    <result column="forward" jdbcType="INTEGER" property="forward" />
+    <result column="comment" jdbcType="INTEGER" property="comment" />
+    <result column="collection" jdbcType="INTEGER" property="collection" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manuscript_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.amo1.model.ManuscriptData">
+    insert into manuscript_data (id, love, forward, comment, collection)
+    values (#{id,jdbcType=INTEGER}, #{love,jdbcType=INTEGER}, #{forward,jdbcType=INTEGER},
+      #{comment,jdbcType=INTEGER}, #{collection,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.ManuscriptData">
+    update manuscript_data
+    set love = #{love,jdbcType=INTEGER},
+      forward = #{forward,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=INTEGER},
+      collection = #{collection,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, love, forward, comment, collection
+    from manuscript_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, love, forward, comment, collection
+    from manuscript_data
+  </select>
+</mapper>
