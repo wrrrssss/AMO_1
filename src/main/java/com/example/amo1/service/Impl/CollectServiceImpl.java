@@ -1,16 +1,17 @@
 package com.example.amo1.service.Impl;
 
+import com.example.amo1.mapper.CollectMapper;
 import com.example.amo1.mapper.ListsMapper;
 //import com.example.amo1.mapper.TagMapper;
+import com.example.amo1.mapper.ManuscriptMapper;
 import com.example.amo1.mapper.TagMapper;
-import com.example.amo1.model.Lists;
+import com.example.amo1.model.*;
 //import com.example.amo1.model.Manuscript;
-import com.example.amo1.model.ResultMessage;
-import com.example.amo1.model.Tag;
 import com.example.amo1.service.CollectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("collectService")
@@ -21,6 +22,12 @@ public class CollectServiceImpl implements CollectService {
 
     @Autowired
     private TagMapper tagMapper;
+
+    @Autowired
+    private CollectMapper collectMapper;
+
+    @Autowired
+    private ManuscriptMapper manuscriptMapper;
 
     @Override
     public ResultMessage createFavoritesList(Lists lists) {
@@ -54,6 +61,9 @@ public class CollectServiceImpl implements CollectService {
 
         //删除标签信息
         tagMapper.deleteAll(list_id);
+
+        //删除收藏关系信息
+        collectMapper.deleteList(list_id);
 
         return new ResultMessage(true,"删除成功");
     }
@@ -93,18 +103,25 @@ public class CollectServiceImpl implements CollectService {
     }
 
     @Override
-    public ResultMessage collect(int manuscript_id, int list_id) {
-        return null;
+    public ResultMessage collect(int manuscript_id, int list_id, int user_id) {
+        //稿件是否还存在 todo
+
+        //收藏夹是否还存在 todo
+
+        //是否已经收藏过 todo
+        if (collectMapper.ifExist(new Collect(manuscript_id,list_id,user_id))!=null)
+            return new ResultMessage(false,"已经收藏进该收藏夹");
+
+        //收藏
+        collectMapper.insert(new Collect(manuscript_id,list_id,user_id));
+
+        return new ResultMessage(true,"收藏成功");
     }
 
     @Override
-    public ResultMessage moveToAnotherList(int manuscript_id, int list_id) {
-        return null;
-    }
-
-    @Override
-    public ResultMessage cancelCollect(int manuscript_id, int list_id) {
-        return null;
+    public ResultMessage moveOutList(int manuscript_id, int list_id) {
+        collectMapper.delete(new Collect(manuscript_id,list_id));
+        return new ResultMessage(true,"删除成功");
     }
 
     @Override
@@ -122,8 +139,18 @@ public class CollectServiceImpl implements CollectService {
         return lists;
     }
 
-//    @Override
-//    public List<Manuscript> getAllManuscriptOfList(int list_id) {
-//        return null;
-//    }
+    @Override
+    public List<Manuscript> getAllManuscriptOfList(int list_id) {
+        //获得所有稿件id
+        List<Integer> manuscript_ids = collectMapper.getAllOfList(list_id);
+
+        List<Manuscript> manuscripts = new ArrayList<>();
+
+        //获取所有稿件
+        for (int manuscript_id: manuscript_ids) {
+            manuscripts.add(manuscriptMapper.selectByPrimaryKey(manuscript_id));
+        }
+
+        return manuscripts;
+    }
 }

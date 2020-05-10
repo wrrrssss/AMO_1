@@ -36,7 +36,7 @@ public class HistoryController {
      * @return 操作是否成功
      */
     @RequestMapping(value = "/recordHistory")
-    private ResultMessage recordHistory(@RequestParam(value = "user_id")String user_id,
+    public ResultMessage recordHistory(@RequestParam(value = "user_id")String user_id,
                                         @RequestParam(value = "manuscript_id")String manuscript_id){
         return historyService.recordHistory(new History(user_id,manuscript_id));
     }
@@ -47,7 +47,7 @@ public class HistoryController {
      * @return 操作是否成功
      */
     @RequestMapping(value = "/deleteHistory")
-    private ResultMessage deleteHistory(@RequestParam(value = "id")String id){
+    public ResultMessage deleteHistory(@RequestParam(value = "id")String id){
         return historyService.deleteHistory(Integer.parseInt(id));
     }
 
@@ -57,7 +57,7 @@ public class HistoryController {
      * @return 操作是否成功
      */
     @RequestMapping(value = "/getAllHistoryOfUser")
-    private List<History> getAllHistoryOfUser(@RequestParam(value = "user_id")String user_id){
+    public List<History> getAllHistoryOfUser(@RequestParam(value = "user_id")String user_id){
         return historyService.getAllHistoryOfAUser(Integer.parseInt(user_id));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.amo1.controller;
 
 import com.example.amo1.model.Lists;
+import com.example.amo1.model.Manuscript;
 import com.example.amo1.model.ResultMessage;
 import com.example.amo1.service.CollectService;
 import org.springframework.web.bind.annotation.*;
@@ -46,18 +47,19 @@ public class CollectController {
     }
 
     //收藏稿件
-    public ResultMessage collect(){
-        return null;
+    @RequestMapping(value = "/collect")
+    public ResultMessage collect(@RequestParam(value = "manuscript_id")String manuscript_id,
+                                 @RequestParam(value = "list_id")String list_id,
+                                 @RequestParam(value = "user_id")String user_id){
+        return collectService.collect(Integer.parseInt(manuscript_id),Integer.parseInt(list_id),Integer.parseInt(user_id));
     }
 
-    //移动收藏到另一收藏夹
-    public ResultMessage moveToAnotherList(){
-        return null;
-    }
 
-    //取消收藏
-    public ResultMessage cancelCollect(){
-        return null;
+    //移出收藏夹
+    @RequestMapping(value = "/moveOutList")
+    public ResultMessage moveOutList(@RequestParam(value = "manuscript_id")String manuscript_id,
+                                     @RequestParam(value = "list_id") String list_id){
+        return collectService.moveOutList(Integer.parseInt(manuscript_id),Integer.parseInt(list_id));
     }
 
     //获得用户的所有收藏夹
@@ -66,10 +68,11 @@ public class CollectController {
         return collectService.getAllList(Integer.parseInt(user_id));
     }
 
-//    //获得收藏夹所有收藏 todo
-//    public List<Manuscript> getAllManuscriptOfList(){
-//        return null;
-//    }
+    //获得收藏夹所有收藏
+    @RequestMapping(value = "/getAllManuscriptOfList")
+    public List<Manuscript> getAllManuscriptOfList(@RequestParam(value = "list_id") String list_id){
+        return collectService.getAllManuscriptOfList(Integer.parseInt(list_id));
+    }
 
 
 }

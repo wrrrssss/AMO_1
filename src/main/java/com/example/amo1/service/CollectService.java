@@ -2,6 +2,7 @@ package com.example.amo1.service;
 
 import com.example.amo1.model.Lists;
 //import com.example.amo1.model.Manuscript;
+import com.example.amo1.model.Manuscript;
 import com.example.amo1.model.ResultMessage;
 
 import java.util.ArrayList;
@@ -24,17 +25,14 @@ public interface CollectService {
     ResultMessage modifyFavoritesList(Lists lists);
 
     //收藏稿件
-    ResultMessage collect(int manuscript_id, int list_id);
-
-    //移动收藏到另一收藏夹
-    ResultMessage moveToAnotherList(int manuscript_id, int list_id);
+    ResultMessage collect(int manuscript_id, int list_id, int user_id);
 
     //取消收藏
-    ResultMessage cancelCollect(int manuscript_id, int list_id);
+    ResultMessage moveOutList(int manuscript_id, int list_id);
 
     //获得用户的所有收藏夹
     List<Lists> getAllList(int user_id);
 
-//    //获得收藏夹所有收藏 todo
-//    List<Manuscript> getAllManuscriptOfList(int list_id);
+    //获得收藏夹所有收藏 todo
+    List<Manuscript> getAllManuscriptOfList(int list_id);
 }
