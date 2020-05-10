@@ -34,13 +34,13 @@ public class MessageController {
         return messageService.sendMessage(message);
     }
 
-    //获取与某人的所有私聊信息
+    //获取所有消息
     @RequestMapping(value = "/getAllMessage")
     public List<Message> getAllMessage(@RequestParam(value = "user_id") String user_id){
         return messageService.getAllMessage(Integer.parseInt(user_id));
     }
 
-    //删除某条信息
+    //删除某条消息
     @RequestMapping(value = "/deleteMessage")
     public ResultMessage deleteMessage(@RequestParam(value = "id") String id){
         return messageService.deleteMessage(Integer.parseInt(id));

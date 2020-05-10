@@ -7,8 +7,8 @@ import java.util.List;
 public interface RecommendService {
 
     //个性化推荐
-    List<Manuscript> personalizedRecommend();
+    List<Manuscript> personalizedRecommend(int user_id);
 
     //距离匹配推荐
-    List<Manuscript> distanceMatchingRecommend();
+    List<Manuscript> distanceMatchingRecommend(int user_id);
 }

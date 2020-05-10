@@ -15,14 +15,12 @@ public class RecommendServiceImpl implements RecommendService {
     private ManuscriptMapper manuscriptMapper;
 
     @Override
-    public List<Manuscript> personalizedRecommend() {
-
+    public List<Manuscript> personalizedRecommend(int user_id) {
         return manuscriptMapper.selectFive();
     }
 
     @Override
-    public List<Manuscript> distanceMatchingRecommend() {
-
+    public List<Manuscript> distanceMatchingRecommend(int user_id) {
         return manuscriptMapper.selectFive();
     }
 }
