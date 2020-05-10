@@ -1,21 +1,26 @@
 package com.example.amo1.model;
 
-/**
- * model示例代码
- * by wrs
- */
-public class Demo {
-
+public class User {
     private Integer id;
+
     private String username;
+
     private String password;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -23,14 +28,6 @@ public class Demo {
     }
 
     public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.password = password == null ? null : password.trim();
     }
 }

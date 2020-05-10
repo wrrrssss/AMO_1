@@ -3,6 +3,9 @@ package com.example.amo1.controller;
 import com.example.amo1.model.Manuscript;
 import com.example.amo1.model.ResultMessage;
 import com.example.amo1.service.ManuscriptService;
+import com.example.amo1.util.Define;
+import com.example.amo1.vo.SearchVO;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,5 +41,17 @@ public class ManuscriptController {
         resultMessage.setSuccess(true);
         resultMessage.setMessage("删除成功");
         return resultMessage;
+    }
+
+    /**
+     * 全文检索
+     * @param currPage
+     * @param searchVO
+     * @return
+     */
+    @RequestMapping("search/{currPage}")
+    public PageInfo<Manuscript> search(@PathVariable Integer currPage, @RequestBody SearchVO searchVO) {
+        System.out.println(searchVO);
+        return manuscriptService.search(currPage, Define.PAGE_SIZE, searchVO.getKeyword());
     }
 }
