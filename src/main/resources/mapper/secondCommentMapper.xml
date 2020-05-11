@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.amo1.mapper.SecondCommentMapper">
+  <resultMap id="BaseResultMap" type="com.example.amo1.model.SecondComment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="first_comment_id" jdbcType="INTEGER" property="firstCommentId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="love" jdbcType="INTEGER" property="love" />
+    <result column="commentDate" jdbcType="TIMESTAMP" property="commentdate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from second_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.amo1.model.SecondComment">
+    insert into second_comment (id, first_comment_id, user_id, 
+      content, love, commentDate
+      )
+    values (#{id,jdbcType=INTEGER}, #{firstCommentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{love,jdbcType=INTEGER}, #{commentdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.SecondComment">
+    update second_comment
+    set first_comment_id = #{firstCommentId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      love = #{love,jdbcType=INTEGER},
+      commentDate = #{commentdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, first_comment_id, user_id, content, love, commentDate
+    from second_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, first_comment_id, user_id, content, love, commentDate
+    from second_comment
+  </select>
+  <select id="selectByFirstCommentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, first_comment_id, user_id, content, love, commentDate
+    from second_comment
+    where first_comment_id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>
