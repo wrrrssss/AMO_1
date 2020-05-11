@@ -3,8 +3,10 @@ package com.example.amo1.model;
 public class User {
     private Integer id;
 
+    //用户名
     private String username;
 
+    //密码
     private String password;
 
     public Integer getId() {

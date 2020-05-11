@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * 用户原创模块，稿件发布
+ */
 @RestController
 @RequestMapping("/manuscript")
 public class ManuscriptController {
@@ -20,6 +23,11 @@ public class ManuscriptController {
     @Resource
     private ManuscriptService manuscriptService;
 
+    /**
+     * 发布稿件
+     * @param manuscript
+     * @return
+     */
     @RequestMapping("publish")
     public ResultMessage publishManuscript(@RequestBody Manuscript manuscript) {
         manuscriptService.publishManuscript(manuscript);
@@ -29,11 +37,21 @@ public class ManuscriptController {
         return resultMessage;
     }
 
+    /**
+     * 根据id查找稿件
+     * @param id
+     * @return
+     */
     @RequestMapping("selById/{id}")
     public Manuscript selById(@PathVariable Integer id) {
         return manuscriptService.select(id);
     }
 
+    /**
+     * 删除稿件
+     * @param id
+     * @return
+     */
     @RequestMapping("delById/{id}")
     public ResultMessage delById(@PathVariable Integer id) {
         manuscriptService.delete(id);

@@ -8,6 +8,9 @@ import lombok.ToString;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * 客服在线聊天用的vo
+ */
 @Data
 @ToString
 public class MessageVO {
