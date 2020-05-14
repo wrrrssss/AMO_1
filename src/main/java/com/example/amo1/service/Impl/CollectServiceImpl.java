@@ -2,11 +2,9 @@ package com.example.amo1.service.Impl;
 
 import com.example.amo1.mapper.CollectMapper;
 import com.example.amo1.mapper.ListsMapper;
-//import com.example.amo1.mapper.TagMapper;
 import com.example.amo1.mapper.ManuscriptMapper;
 import com.example.amo1.mapper.TagMapper;
 import com.example.amo1.model.*;
-//import com.example.amo1.model.Manuscript;
 import com.example.amo1.service.CollectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

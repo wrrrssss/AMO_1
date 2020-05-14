@@ -1,11 +1,9 @@
 package com.example.amo1.service;
 
 import com.example.amo1.model.Lists;
-//import com.example.amo1.model.Manuscript;
 import com.example.amo1.model.Manuscript;
 import com.example.amo1.model.ResultMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +31,6 @@ public interface CollectService {
     //获得用户的所有收藏夹
     List<Lists> getAllList(int user_id);
 
-    //获得收藏夹所有收藏 todo
+    //获得收藏夹所有收藏
     List<Manuscript> getAllManuscriptOfList(int list_id);
 }

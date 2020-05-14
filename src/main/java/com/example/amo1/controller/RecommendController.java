@@ -23,7 +23,7 @@ public class RecommendController {
     @Resource(name = "recommendService")
     private RecommendService recommendService;
 
-    //个性化推荐
+    //个性化推荐（基于用户的协同过滤算法）
     @RequestMapping(value = "/personalizedRecommend")
     public List<Manuscript> personalizedRecommend(@RequestParam(value = "user_id")String user_id){
         return recommendService.personalizedRecommend(Integer.parseInt(user_id));
@@ -34,4 +34,12 @@ public class RecommendController {
     public List<Manuscript> distanceMatchingRecommend(@RequestParam(value = "user_id") String user_id){
         return recommendService.distanceMatchingRecommend(Integer.parseInt(user_id));
     }
+
+//    //根据标签推荐（）
+//    @RequestMapping(value = "/tagRecommend")
+//    public List<Manuscript> tagRecommend(@RequestParam(value = "user_id")String user_id){
+//        return ;
+//    }
+
+
 }
