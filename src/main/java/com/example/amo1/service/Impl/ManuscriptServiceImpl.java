@@ -27,7 +27,6 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
-import java.awt.print.Book;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,6 +48,10 @@ public class ManuscriptServiceImpl implements ManuscriptService {
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
 
+    /**
+     * 发布稿件
+     * @param manuscript
+     */
     @Override
     public void publishManuscript(Manuscript manuscript) {
         String html = manuscript.getContent();
@@ -68,6 +71,11 @@ public class ManuscriptServiceImpl implements ManuscriptService {
         manuscriptRepository.save(manuscript);
     }
 
+    /**
+     * 查询稿件内容
+     * @param id
+     * @return
+     */
     @Override
     public Manuscript select(Integer id) {
         Manuscript manuscript = manuscriptMapper.selectByPrimaryKey(id);
@@ -77,12 +85,20 @@ public class ManuscriptServiceImpl implements ManuscriptService {
         return manuscript;
     }
 
+    /**
+     * 删除稿件
+     * @param id
+     */
     @Override
     public void delete(Integer id) {
         manuscriptMapper.deleteByPrimaryKey(id);
         manuscriptRepository.deleteById(id);
     }
 
+    /**
+     * 修改稿件
+     * @param manuscript
+     */
     @Override
     public void update(Manuscript manuscript) {
         manuscriptMapper.updateByPrimaryKey(manuscript);

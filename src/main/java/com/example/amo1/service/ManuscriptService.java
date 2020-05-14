@@ -12,6 +12,7 @@ public interface ManuscriptService {
 
     void update(Manuscript manuscript);
 
+    //全文检索稿件
     PageInfo<Manuscript> search(Integer currPage, Integer pageSize, String keyword);
 
 }

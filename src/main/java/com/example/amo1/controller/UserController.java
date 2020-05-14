@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-
+/**
+ * 用户管理模块
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -18,6 +20,11 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
     @RequestMapping("register")
     public ResultMessage register(@RequestBody User user){
         userService.register(user);
@@ -27,6 +34,11 @@ public class UserController {
         return resultMessage;
     }
 
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
     @RequestMapping("login")
     public ResultMessage login(@RequestBody User user){
         ResultMessage resultMessage = new ResultMessage();
@@ -40,6 +52,11 @@ public class UserController {
         return resultMessage;
     }
 
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     */
     @RequestMapping("update")
     public ResultMessage update(@RequestBody User user){
         userService.updateUser(user);
@@ -49,6 +66,11 @@ public class UserController {
         return resultMessage;
     }
 
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
     @RequestMapping("delete/{id}")
     public ResultMessage delete(@PathVariable Integer id){
         userService.deleteUser(id);
