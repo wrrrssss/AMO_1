@@ -147,6 +147,8 @@ public class ManuscriptServiceImpl implements ManuscriptService {
                     manuscript.setId((Integer) hit.getSourceAsMap().get("id"));
                     manuscript.setUserId((Integer) hit.getSourceAsMap().get("userId"));
                     manuscript.setUsername(String.valueOf(hit.getSourceAsMap().get("username")));
+                    manuscript.setTitle(String.valueOf(hit.getSourceAsMap().get("title")));
+                    manuscript.setCover(String.valueOf(hit.getSourceAsMap().get("cover")));
                     manuscript.setContent(HtmlUtils.htmlUnescape(String.valueOf(hit.getSourceAsMap().get("content"))));
                     manuscript.setPulishdate(new Date((Long) (hit.getSourceAsMap().get("pulishdate"))));
                     ManuscriptData manuscriptData = manuscriptDataMapper.selectByPrimaryKey(manuscript.getId());
