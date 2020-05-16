@@ -1,10 +1,8 @@
 package com.example.amo1.service.Impl;
 
-import com.example.amo1.mapper.ManuscriptDataMapper;
 import com.example.amo1.mapper.ManuscriptMapper;
 import com.example.amo1.mapper.ManuscriptRepository;
 import com.example.amo1.model.Manuscript;
-import com.example.amo1.model.ManuscriptData;
 import com.example.amo1.service.ManuscriptService;
 import com.github.pagehelper.PageInfo;
 import org.elasticsearch.action.search.SearchResponse;
@@ -39,8 +37,6 @@ public class ManuscriptServiceImpl implements ManuscriptService {
     @Autowired
     private ManuscriptMapper manuscriptMapper;
 
-    @Autowired
-    private ManuscriptDataMapper manuscriptDataMapper;
 
     @Autowired
     private ManuscriptRepository manuscriptRepository;
@@ -58,14 +54,12 @@ public class ManuscriptServiceImpl implements ManuscriptService {
         //处理html特殊标签
         String temp = HtmlUtils.htmlEscape(html);
         manuscript.setContent(temp);
-        manuscriptMapper.insert(manuscript);
         //初始化稿件的数据
-        manuscript.getManuscriptData().setId(manuscript.getId());
-        manuscript.getManuscriptData().setLove(0);
-        manuscript.getManuscriptData().setForward(0);
-        manuscript.getManuscriptData().setComment(0);
-        manuscript.getManuscriptData().setCollection(0);
-        manuscriptDataMapper.insert(manuscript.getManuscriptData());
+        manuscript.setLove(0);
+        manuscript.setForward(0);
+        manuscript.setComment(0);
+        manuscript.setCollection(0);
+        manuscriptMapper.insert(manuscript);
         //解析处理了的html语句
         manuscript.setContent(HtmlUtils.htmlUnescape(temp));
         manuscriptRepository.save(manuscript);
@@ -150,9 +144,12 @@ public class ManuscriptServiceImpl implements ManuscriptService {
                     manuscript.setTitle(String.valueOf(hit.getSourceAsMap().get("title")));
                     manuscript.setCover(String.valueOf(hit.getSourceAsMap().get("cover")));
                     manuscript.setContent(HtmlUtils.htmlUnescape(String.valueOf(hit.getSourceAsMap().get("content"))));
-                    manuscript.setPulishdate(new Date((Long) (hit.getSourceAsMap().get("pulishdate"))));
-                    ManuscriptData manuscriptData = manuscriptDataMapper.selectByPrimaryKey(manuscript.getId());
-                    manuscript.setManuscriptData(manuscriptData);
+                    manuscript.setPublishdate(new Date((Long) (hit.getSourceAsMap().get("pulishdate"))));
+                    manuscript.setLove((Integer) hit.getSourceAsMap().get("love"));
+                    manuscript.setForward((Integer) hit.getSourceAsMap().get("forward"));
+                    manuscript.setComment((Integer) hit.getSourceAsMap().get("comment"));
+                    manuscript.setCollection((Integer) hit.getSourceAsMap().get("collection"));
+
 
 
                     //设置高亮（若对应字段有高亮的话）

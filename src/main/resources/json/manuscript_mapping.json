@@ -18,19 +18,17 @@
       "publishDate":{
         "type":"long"
       },
-      "manuscriptData":{
-          "love": {
-            "type": "integer"
-          },
-          "forward": {
-            "type": "integer"
-          },
-          "comment": {
-            "type": "integer"
-          },
-          "collection": {
-            "type": "integer"
-          }
+      "love": {
+        "type": "integer"
+      },
+      "forward": {
+        "type": "integer"
+      },
+      "comment": {
+        "type": "integer"
+      },
+      "collection": {
+        "type": "integer"
       }
     }
   }
