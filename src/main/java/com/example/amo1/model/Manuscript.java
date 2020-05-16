@@ -36,13 +36,19 @@ public class Manuscript {
     //用户名
     private String username;
 
+    //标题
+    private String title;
+
+    //封面
+    private String cover;
+
     //发布稿件日期
     private Date pulishdate;
 
     //稿件内容
     private String content;
 
-    //一对一
+    //一对一稿件数据
     private ManuscriptData manuscriptData;
 
     public Integer getId() {
@@ -91,5 +97,21 @@ public class Manuscript {
 
     public void setManuscriptData(ManuscriptData manuscriptData) {
         this.manuscriptData = manuscriptData;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }
