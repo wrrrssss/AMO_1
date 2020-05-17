@@ -9,7 +9,12 @@ public class ResultMessage {
     private String message;
     private boolean success;
     //登录的时候才用，返回当前登录的id
-    private int userId;
+    private User user;
+
+
+    public String getMessage() {
+        return message;
+    }
 
     public ResultMessage(){}
 
@@ -18,16 +23,6 @@ public class ResultMessage {
         this.message = message;
     }
 
-    //登录时使用
-    public ResultMessage(boolean success, String message, int userId){
-        this.success = success;
-        this.message = message;
-        this.userId = userId;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 
     public void setMessage(String message) {
         this.message = message;
@@ -41,11 +36,11 @@ public class ResultMessage {
         this.success = success;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
