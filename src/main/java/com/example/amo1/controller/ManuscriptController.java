@@ -47,6 +47,12 @@ public class ManuscriptController {
         return manuscriptService.select(id);
     }
 
+
+    @RequestMapping("list/{currPage}")
+    public PageInfo<Manuscript> list(@PathVariable Integer currPage, Integer userId) {
+        return manuscriptService.list(currPage, Define.PAGE_SIZE, userId);
+    }
+
     /**
      * 删除稿件
      * @param id
