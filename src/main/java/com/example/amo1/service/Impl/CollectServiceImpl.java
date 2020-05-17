@@ -37,11 +37,13 @@ public class CollectServiceImpl implements CollectService {
         //创建收藏夹
         listsMapper.insert(lists);
 
-        //将标签插入
-        List<String> tags = lists.getTag();
+        if(lists.getTag() != null) {
+            //将标签插入
+            List<String> tags = lists.getTag();
 
-        for (String tag : tags) {
-            tagMapper.insert(new Tag(lists.getId(), tag));
+            for (String tag : tags) {
+                tagMapper.insert(new Tag(lists.getId(), tag));
+            }
         }
 
         return new ResultMessage(true,"创建成功");
