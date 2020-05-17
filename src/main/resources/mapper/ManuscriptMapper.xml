@@ -5,15 +5,14 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="pulishDate" jdbcType="TIMESTAMP" property="pulishdate" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="publishDate" jdbcType="TIMESTAMP" property="publishdate" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
-    <association property="manuscriptData" column="id" javaType="ManuscriptData">
-      <id column="id" jdbcType="INTEGER" property="id" />
-      <result column="love" jdbcType="INTEGER" property="love" />
-      <result column="forward" jdbcType="INTEGER" property="forward" />
-      <result column="comment" jdbcType="INTEGER" property="comment" />
-      <result column="collection" jdbcType="INTEGER" property="collection" />
-    </association>
+    <result column="love" jdbcType="INTEGER" property="love" />
+    <result column="forward" jdbcType="INTEGER" property="forward" />
+    <result column="comment" jdbcType="INTEGER" property="comment" />
+    <result column="collection" jdbcType="INTEGER" property="collection" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from manuscript
@@ -21,32 +20,43 @@
   </delete>
   <insert id="insert" parameterType="com.example.amo1.model.Manuscript"
           useGeneratedKeys="true" keyProperty="id">
-    insert into manuscript (id, user_id, username, 
-      pulishDate, content)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
-      #{pulishdate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+    insert into manuscript (id, user_id, username, title, cover,
+      publishDate, content, love, forward, comment, collection)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{cover,jdbcType=VARCHAR},#{publishdate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, #{love,jdbcType=INTEGER},
+      #{forward,jdbcType=INTEGER}, #{comment,jdbcType=INTEGER}, #{collection,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.Manuscript">
     update manuscript
     set user_id = #{userId,jdbcType=INTEGER},
       username = #{username,jdbcType=VARCHAR},
-      pulishDate = #{pulishdate,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=LONGVARCHAR}
+      title = #{title,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      publishDate = #{publishdate,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR},
+      love = #{love,jdbcType=INTEGER},
+      forward = #{forward,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=INTEGER},
+      collection = #{collection,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select ms.id, ms.user_id, ms.username, ms.pulishDate, ms.content, msd.love, msd.forward, msd.comment, msd.collection
-    from manuscript ms
-    inner join manuscript_data msd on ms.id = msd.id
-    where ms.id = #{id,jdbcType=INTEGER}
+    select id, user_id, username, title, cover, publishDate, content, love, forward, comment, collection
+    from manuscript
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, user_id, username, pulishDate, content
+    select id, user_id, username, title, cover, publishDate, content, love, forward, comment, collection
     from manuscript
   </select>
   <select id="selectFive" resultMap="BaseResultMap">
     select *
     from manuscript
     limit 5
+  </select>
+  <select id="selAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, username, title, cover, publishDate, content, love, forward, comment, collection
+    from manuscript
+    where user_id = #{userId}
   </select>
 </mapper>

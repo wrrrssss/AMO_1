@@ -36,14 +36,29 @@ public class Manuscript {
     //用户名
     private String username;
 
+    //标题
+    private String title;
+
+    //封面
+    private String cover;
+
     //发布稿件日期
-    private Date pulishdate;
+    private Date publishdate;
 
     //稿件内容
     private String content;
 
-    //一对一
-    private ManuscriptData manuscriptData;
+    //点赞数
+    private Integer love;
+
+    //转发数
+    private Integer forward;
+
+    //评论数
+    private Integer comment;
+
+    //收藏数
+    private Integer collection;
 
     public Integer getId() {
         return id;
@@ -69,12 +84,12 @@ public class Manuscript {
         this.username = username == null ? null : username.trim();
     }
 
-    public Date getPulishdate() {
-        return pulishdate;
+    public Date getPublishdate() {
+        return publishdate;
     }
 
-    public void setPulishdate(Date pulishdate) {
-        this.pulishdate = pulishdate;
+    public void setPublishdate(Date pulishdate) {
+        this.publishdate = publishdate;
     }
 
     public String getContent() {
@@ -85,11 +100,52 @@ public class Manuscript {
         this.content = content == null ? null : content.trim();
     }
 
-    public ManuscriptData getManuscriptData() {
-        return manuscriptData;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setManuscriptData(ManuscriptData manuscriptData) {
-        this.manuscriptData = manuscriptData;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public Integer getLove() {
+        return love;
+    }
+
+    public void setLove(Integer love) {
+        this.love = love;
+    }
+
+    public Integer getForward() {
+        return forward;
+    }
+
+    public void setForward(Integer forward) {
+        this.forward = forward;
+    }
+
+    public Integer getComment() {
+        return comment;
+    }
+
+    public void setComment(Integer comment) {
+        this.comment = comment;
+    }
+
+    public Integer getCollection() {
+        return collection;
+    }
+
+    public void setCollection(Integer collection) {
+        this.collection = collection;
     }
 }

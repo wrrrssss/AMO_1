@@ -42,9 +42,11 @@ public class UserController {
     @RequestMapping("login")
     public ResultMessage login(@RequestBody User user){
         ResultMessage resultMessage = new ResultMessage();
-        if(user.getPassword().equals(userService.login(user).getPassword())) {  //输入的密码等于数据库对应账户的密码
+        User qUser = userService.login(user);
+        if(user.getPassword().equals(qUser.getPassword())) {  //输入的密码等于数据库对应账户的密码
             resultMessage.setSuccess(true);
             resultMessage.setMessage("登录成功");
+            resultMessage.setUser(qUser);
         } else {
             resultMessage.setSuccess(false);
             resultMessage.setMessage("账户或密码错误");
