@@ -35,11 +35,5 @@ public class RecommendController {
         return recommendService.distanceMatchingRecommend(Integer.parseInt(user_id));
     }
 
-//    //根据标签推荐（）
-//    @RequestMapping(value = "/tagRecommend")
-//    public List<Manuscript> tagRecommend(@RequestParam(value = "user_id")String user_id){
-//        return ;
-//    }
-
 
 }

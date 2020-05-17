@@ -68,7 +68,8 @@ public class RecommendServiceImpl implements RecommendService {
                     }
 
                     else{
-                        Jaccard_collect.add(1.0*calculateCommon(user_collectsID,temp_collectsID)/calculateTogether(user_collectsID,temp_collectsID));
+                        Jaccard_collect.add(1.0*calculateCommon(user_collectsID,temp_collectsID)
+                                /calculateTogether(user_collectsID,temp_collectsID));
                     }
                 }
             }
@@ -96,7 +97,8 @@ public class RecommendServiceImpl implements RecommendService {
                     }
 
                     else{
-                        Jaccard_history.add(1.0*calculateCommon(user_historyID,temp_historyID)/calculateTogether(user_historyID,temp_historyID));
+                        Jaccard_history.add(1.0*calculateCommon(user_historyID,temp_historyID)
+                                /calculateTogether(user_historyID,temp_historyID));
                     }
                 }
             }
