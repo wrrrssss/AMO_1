@@ -7,29 +7,29 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from groups
+    delete from friend_group
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.amo1.model.Group">
-    insert into groups (id, name, user_id
+    insert into friend_group (id, name, user_id
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.Group">
-    update groups
+    update friend_group
     set name = #{name,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, name, user_id
-    from groups
+    from friend_group
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, name, user_id
-    from groups
+    from friend_group
     where user_id = #{user_id,jdbcType=INTEGER}
   </select>
 </mapper>
