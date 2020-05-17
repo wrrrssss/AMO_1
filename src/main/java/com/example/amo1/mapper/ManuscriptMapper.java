@@ -15,4 +15,6 @@ public interface ManuscriptMapper {
     int updateByPrimaryKey(Manuscript record);
 
     List<Manuscript> selectFive();
+
+    List<Manuscript> selAll(Integer userId);
 }

@@ -31,7 +31,7 @@
     select id, username, password
     from user
   </select>
-  <select id="selectByUsername" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, username, password
     from user
     where username = #{username,jdbcType=INTEGER}

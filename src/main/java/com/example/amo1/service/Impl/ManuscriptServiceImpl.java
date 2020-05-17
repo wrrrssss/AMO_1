@@ -4,6 +4,7 @@ import com.example.amo1.mapper.ManuscriptMapper;
 import com.example.amo1.mapper.ManuscriptRepository;
 import com.example.amo1.model.Manuscript;
 import com.example.amo1.service.ManuscriptService;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -77,6 +78,14 @@ public class ManuscriptServiceImpl implements ManuscriptService {
         //解析处理了的html语句
         manuscript.setContent(HtmlUtils.htmlUnescape(temp));
         return manuscript;
+    }
+
+    @Override
+    public PageInfo<Manuscript> list(Integer currPage, Integer pageSize, Integer userId) {
+        if(currPage == null)  currPage = 1;
+        PageHelper.startPage(currPage, pageSize);
+        PageInfo<Manuscript> pageInfo = new PageInfo<>(manuscriptMapper.selAll(userId));
+        return pageInfo;
     }
 
     /**

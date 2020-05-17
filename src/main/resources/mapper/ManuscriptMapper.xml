@@ -54,4 +54,9 @@
     from manuscript
     limit 5
   </select>
+  <select id="selAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, username, title, cover, publishDate, content, love, forward, comment, collection
+    from manuscript
+    where user_id = #{userId}
+  </select>
 </mapper>
