@@ -42,4 +42,10 @@
     from friend
     where groups_id = #{group_id,jdbcType=INTEGER}
   </select>
+
+  <select id="getFans" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from friend
+    where friend_id = #{i,jdbcType=INTEGER}
+  </select>
 </mapper>

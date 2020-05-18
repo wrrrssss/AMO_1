@@ -31,4 +31,7 @@ public interface FriendService {
 
     //获取某组的所有好友
     List<Friend> getAllFriend(int group_id);
+
+    //获取粉丝数
+    int getFansNumber(int i);
 }

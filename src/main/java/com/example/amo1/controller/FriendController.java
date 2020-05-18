@@ -74,4 +74,10 @@ public class FriendController {
     public List<Friend> getAllFriend(@RequestParam(value = "group_id")String group_id){
         return friendService.getAllFriend(Integer.parseInt(group_id));
     }
+
+    //获取粉丝数
+    @RequestMapping(value = "/getFansNumber")
+    public int getFansNumber(@RequestParam(value = "user_id")String user_id){
+        return friendService.getFansNumber(Integer.parseInt(user_id));
+    }
 }

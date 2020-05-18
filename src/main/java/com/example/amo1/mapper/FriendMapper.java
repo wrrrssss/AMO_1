@@ -13,4 +13,6 @@ public interface FriendMapper {
     List<Friend> selectAll(Integer group_id);
 
     int updateByPrimaryKey(Friend record);
+
+    List<Friend> getFans(Integer i);
 }

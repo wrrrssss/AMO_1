@@ -74,4 +74,9 @@ public class FriendServiceImpl implements FriendService {
     public List<Friend> getAllFriend(int group_id) {
         return friendMapper.selectAll(group_id);
     }
+
+    @Override
+    public int getFansNumber(int i) {
+        return friendMapper.getFans(i).size();
+    }
 }
