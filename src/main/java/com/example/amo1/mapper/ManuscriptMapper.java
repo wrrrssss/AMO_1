@@ -17,4 +17,8 @@ public interface ManuscriptMapper {
     List<Manuscript> selectFive();
 
     List<Manuscript> selAll(Integer userId);
+
+    int addLoveOne(Integer id);
+
+    int cancelLove(Integer id);
 }

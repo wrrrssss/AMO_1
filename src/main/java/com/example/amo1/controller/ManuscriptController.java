@@ -1,5 +1,6 @@
 package com.example.amo1.controller;
 
+import com.example.amo1.model.LoveData;
 import com.example.amo1.model.Manuscript;
 import com.example.amo1.model.ResultMessage;
 import com.example.amo1.service.ManuscriptService;
@@ -77,5 +78,33 @@ public class ManuscriptController {
     public PageInfo<Manuscript> search(@PathVariable Integer currPage, @RequestBody SearchVO searchVO) {
         System.out.println(searchVO);
         return manuscriptService.search(currPage, Define.PAGE_SIZE, searchVO.getKeyword());
+    }
+
+    /**
+     * 点赞加一
+     * @param loveData
+     * @return
+     */
+    @RequestMapping("loveAddOne")
+    public ResultMessage loveAddOne(@RequestBody LoveData loveData) {
+        manuscriptService.loveAddOne(loveData);
+        ResultMessage resultMessage = new ResultMessage();
+        resultMessage.setSuccess(true);
+        resultMessage.setMessage("点赞成功");
+        return resultMessage;
+    }
+
+    /**
+     * 取消点赞
+     * @param loveData
+     * @return
+     */
+    @RequestMapping("cancelLove")
+    public ResultMessage cancelLove(@RequestBody LoveData loveData) {
+        manuscriptService.cancelLove(loveData);
+        ResultMessage resultMessage = new ResultMessage();
+        resultMessage.setSuccess(true);
+        resultMessage.setMessage("取消点赞成功");
+        return resultMessage;
     }
 }
