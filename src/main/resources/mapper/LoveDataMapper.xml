@@ -36,4 +36,10 @@
     select id, manuscript_id, user_id
     from love_data
   </select>
+  <select id="selectByUser" parameterType="com.example.amo1.model.LoveData" resultMap="BaseResultMap">
+    select id, manuscript_id, user_id
+    from love_data
+    where manuscript_id = #{manuscriptId,jdbcType=INTEGER} and
+      user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -15,4 +15,6 @@ public interface LoveDataMapper {
     int updateByPrimaryKey(LoveData record);
 
     int deleteByUser(LoveData loveData);
+
+    LoveData selectByUser(LoveData loveData);
 }
