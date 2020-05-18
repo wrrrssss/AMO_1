@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(User user) {
-        //判断是否有重复 todo
+
         userMapper.insert(user);
     }
 
