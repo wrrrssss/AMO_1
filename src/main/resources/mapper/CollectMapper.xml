@@ -33,7 +33,7 @@
         where list_id = #{list_id,jdbcType=INTEGER} and manuscript_id = #{manuscript_id,jdbcType=INTEGER}
     </delete>
 
-    <select id="getAllOfList" parameterType="java.lang.Integer">
+    <select id="getAllOfList" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select manuscript_id
         from collect
         where list_id = #{list_id,jdbcType=INTEGER}

@@ -61,7 +61,15 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     public ResultMessage deleteGroup(int id) {
+
+        //判断小组中是否有好友
+        if (friendMapper.selectByGroup(id) != null){
+            return new ResultMessage(false,"请先删除或修改分组中的好友");
+        }
+
         groupMapper.deleteByPrimaryKey(id);
+
+
         return new ResultMessage(true,"删除成功");
     }
 

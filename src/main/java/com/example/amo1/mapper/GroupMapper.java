@@ -13,4 +13,6 @@ public interface GroupMapper {
     List<Group> selectAll(Integer user_id);
 
     int updateByPrimaryKey(Group record);
+
+
 }
