@@ -1,7 +1,9 @@
 package com.example.amo1.service.Impl;
 
+import com.example.amo1.mapper.LoveDataMapper;
 import com.example.amo1.mapper.ManuscriptMapper;
 import com.example.amo1.mapper.ManuscriptRepository;
+import com.example.amo1.model.LoveData;
 import com.example.amo1.model.Manuscript;
 import com.example.amo1.service.ManuscriptService;
 import com.github.pagehelper.PageHelper;
@@ -38,6 +40,8 @@ public class ManuscriptServiceImpl implements ManuscriptService {
     @Autowired
     private ManuscriptMapper manuscriptMapper;
 
+    @Autowired
+    private LoveDataMapper loveDataMapper;
 
     @Autowired
     private ManuscriptRepository manuscriptRepository;
@@ -187,6 +191,26 @@ public class ManuscriptServiceImpl implements ManuscriptService {
 
         return pageInfo;
 
+    }
+
+    /**
+     * 点赞加一
+     * @param loveData
+     */
+    @Override
+    public void loveAddOne(LoveData loveData) {
+        manuscriptMapper.addLoveOne(loveData.getManuscriptId());
+        loveDataMapper.insert(loveData);
+    }
+
+    /**
+     * 取消点赞
+     * @param loveData
+     */
+    @Override
+    public void cancelLove(LoveData loveData) {
+        manuscriptMapper.cancelLove(loveData.getManuscriptId());
+        loveDataMapper.deleteByUser(loveData);
     }
 
     /**

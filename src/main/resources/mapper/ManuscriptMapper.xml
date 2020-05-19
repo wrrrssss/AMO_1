@@ -59,4 +59,14 @@
     from manuscript
     where user_id = #{userId}
   </select>
+  <update id="addLoveOne" parameterType="java.lang.Integer">
+    update manuscript
+    set love = love + 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="cancelLove" parameterType="java.lang.Integer">
+    update manuscript
+    set love = love - 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
