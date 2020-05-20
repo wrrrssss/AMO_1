@@ -60,7 +60,7 @@ public class FirstCommentController {
     }
 
     /**
-     * 根据稿件id查询所有评论
+     * 根据稿件id查询所有一级评论
      * @param id
      * @return
      */

@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="first_comment_id" jdbcType="INTEGER" property="firstCommentId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="love" jdbcType="INTEGER" property="love" />
     <result column="commentDate" jdbcType="TIMESTAMP" property="commentdate" />
@@ -14,10 +15,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.amo1.model.SecondComment">
-    insert into second_comment (id, first_comment_id, user_id, 
+    insert into second_comment (id, first_comment_id, user_id, username,
       content, love, commentDate
       )
-    values (#{id,jdbcType=INTEGER}, #{firstCommentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{firstCommentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
       #{content,jdbcType=VARCHAR}, #{love,jdbcType=INTEGER}, #{commentdate,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -25,22 +26,23 @@
     update second_comment
     set first_comment_id = #{firstCommentId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       love = #{love,jdbcType=INTEGER},
       commentDate = #{commentdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, first_comment_id, user_id, content, love, commentDate
+    select id, first_comment_id, user_id, username, content, love, commentDate
     from second_comment
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, first_comment_id, user_id, content, love, commentDate
+    select id, first_comment_id, user_id, username, content, love, commentDate
     from second_comment
   </select>
   <select id="selectByFirstCommentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, first_comment_id, user_id, content, love, commentDate
+    select id, first_comment_id, user_id, username, content, love, commentDate
     from second_comment
     where first_comment_id = #{id,jdbcType=INTEGER}
   </select>
