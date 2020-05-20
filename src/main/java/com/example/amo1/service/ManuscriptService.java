@@ -1,10 +1,12 @@
 package com.example.amo1.service;
 
+import com.example.amo1.model.CollectionData;
+import com.example.amo1.model.ForwardData;
 import com.example.amo1.model.LoveData;
 import com.example.amo1.model.Manuscript;
 import com.github.pagehelper.PageInfo;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface ManuscriptService {
     void publishManuscript(Manuscript manuscript);
@@ -27,4 +29,16 @@ public interface ManuscriptService {
 
     //取消点赞
     void cancelLove(LoveData loveData);
+
+    //收藏加一
+    void collectionAddOne(CollectionData collectionData);
+
+    //取消收藏
+    void cancelCollection(CollectionData collectionData);
+
+    //转发加一
+    void forwardAddOne(ForwardData forwardData);
+
+    //取消转发
+    void cancelForward(ForwardData forwardData);
 }

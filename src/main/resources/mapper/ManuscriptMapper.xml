@@ -69,4 +69,24 @@
     set love = love - 1
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="addCollectionOne" parameterType="java.lang.Integer">
+    update manuscript
+    set collection = collection + 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="cancelCollection" parameterType="java.lang.Integer">
+    update manuscript
+    set collection = collection - 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="addForwardOne" parameterType="java.lang.Integer">
+    update manuscript
+    set forward = forward + 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="cancelForward" parameterType="java.lang.Integer">
+    update manuscript
+    set forward = forward - 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

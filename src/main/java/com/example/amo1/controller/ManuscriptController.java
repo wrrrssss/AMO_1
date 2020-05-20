@@ -1,8 +1,6 @@
 package com.example.amo1.controller;
 
-import com.example.amo1.model.LoveData;
-import com.example.amo1.model.Manuscript;
-import com.example.amo1.model.ResultMessage;
+import com.example.amo1.model.*;
 import com.example.amo1.service.ManuscriptService;
 import com.example.amo1.util.Define;
 import com.example.amo1.vo.SearchVO;
@@ -105,6 +103,62 @@ public class ManuscriptController {
         ResultMessage resultMessage = new ResultMessage();
         resultMessage.setSuccess(true);
         resultMessage.setMessage("取消点赞成功");
+        return resultMessage;
+    }
+
+    /**
+     * 收藏加一
+     * @param collectionData
+     * @return
+     */
+    @RequestMapping("collectionAddOne")
+    public ResultMessage collectionAddOne(@RequestBody CollectionData collectionData) {
+        manuscriptService.collectionAddOne(collectionData);
+        ResultMessage resultMessage = new ResultMessage();
+        resultMessage.setSuccess(true);
+        resultMessage.setMessage("收藏成功");
+        return resultMessage;
+    }
+
+    /**
+     * 取消收藏
+     * @param collectionData
+     * @return
+     */
+    @RequestMapping("cancelCollection")
+    public ResultMessage cancelLove(@RequestBody CollectionData collectionData) {
+        manuscriptService.cancelCollection(collectionData);
+        ResultMessage resultMessage = new ResultMessage();
+        resultMessage.setSuccess(true);
+        resultMessage.setMessage("取消收藏成功");
+        return resultMessage;
+    }
+
+    /**
+     * 转发加一
+     * @param forwardData
+     * @return
+     */
+    @RequestMapping("forwardAddOne")
+    public ResultMessage forwardAddOne(@RequestBody ForwardData forwardData) {
+        manuscriptService.forwardAddOne(forwardData);
+        ResultMessage resultMessage = new ResultMessage();
+        resultMessage.setSuccess(true);
+        resultMessage.setMessage("转发成功");
+        return resultMessage;
+    }
+
+    /**
+     * 取消转发
+     * @param forwardData
+     * @return
+     */
+    @RequestMapping("cancelForward")
+    public ResultMessage cancelForward(@RequestBody ForwardData forwardData) {
+        manuscriptService.cancelForward(forwardData);
+        ResultMessage resultMessage = new ResultMessage();
+        resultMessage.setSuccess(true);
+        resultMessage.setMessage("取消转发成功");
         return resultMessage;
     }
 }
