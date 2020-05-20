@@ -11,6 +11,9 @@ public class SecondComment {
     //评论人
     private Integer userId;
 
+    //用户名
+    private String username;
+
     //内容
     private String content;
 
@@ -42,6 +45,14 @@ public class SecondComment {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getContent() {

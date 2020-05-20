@@ -223,7 +223,7 @@ public class ManuscriptServiceImpl implements ManuscriptService {
         //构建查询条件
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         //添加分词查询
-        queryBuilder.withQuery(QueryBuilders.multiMatchQuery(keyword,"bname","author"));
+        queryBuilder.withQuery(QueryBuilders.multiMatchQuery(keyword,"content","username"));
         //分页(ES从第0页开始查)
         queryBuilder.withPageable(PageRequest.of(currPage-1,5));
         //搜索
