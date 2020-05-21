@@ -9,6 +9,9 @@ public class User {
     //密码
     private String password;
 
+    //头像
+    private String picture;
+
     public Integer getId() {
         return id;
     }
@@ -31,5 +34,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
