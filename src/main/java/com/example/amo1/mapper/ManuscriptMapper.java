@@ -21,4 +21,12 @@ public interface ManuscriptMapper {
     int addLoveOne(Integer id);
 
     int cancelLove(Integer id);
+
+    int addCollectionOne(Integer id);
+
+    int cancelCollection(Integer id);
+
+    int addForwardOne(Integer id);
+
+    int cancelForward(Integer id);
 }

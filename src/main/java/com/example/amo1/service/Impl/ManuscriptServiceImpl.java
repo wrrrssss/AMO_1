@@ -1,8 +1,8 @@
 package com.example.amo1.service.Impl;
 
-import com.example.amo1.mapper.LoveDataMapper;
-import com.example.amo1.mapper.ManuscriptMapper;
-import com.example.amo1.mapper.ManuscriptRepository;
+import com.example.amo1.mapper.*;
+import com.example.amo1.model.CollectionData;
+import com.example.amo1.model.ForwardData;
 import com.example.amo1.model.LoveData;
 import com.example.amo1.model.Manuscript;
 import com.example.amo1.service.ManuscriptService;
@@ -42,6 +42,12 @@ public class ManuscriptServiceImpl implements ManuscriptService {
 
     @Autowired
     private LoveDataMapper loveDataMapper;
+
+    @Autowired
+    private CollectionDataMapper collectionDataMapper;
+
+    @Autowired
+    private ForwardDataMapper forwardDataMapper;
 
     @Autowired
     private ManuscriptRepository manuscriptRepository;
@@ -211,6 +217,46 @@ public class ManuscriptServiceImpl implements ManuscriptService {
     public void cancelLove(LoveData loveData) {
         manuscriptMapper.cancelLove(loveData.getManuscriptId());
         loveDataMapper.deleteByUser(loveData);
+    }
+
+    /**
+     * 收藏加一
+     * @param collectionData
+     */
+    @Override
+    public void collectionAddOne(CollectionData collectionData) {
+        manuscriptMapper.addCollectionOne(collectionData.getManuscriptId());
+        collectionDataMapper.insert(collectionData);
+    }
+
+    /**
+     * 取消收藏
+     * @param collectionData
+     */
+    @Override
+    public void cancelCollection(CollectionData collectionData) {
+        manuscriptMapper.cancelCollection(collectionData.getManuscriptId());
+        collectionDataMapper.deleteByUser(collectionData);
+    }
+
+    /**
+     * 转发加一
+     * @param forwardData
+     */
+    @Override
+    public void forwardAddOne(ForwardData forwardData) {
+        manuscriptMapper.addForwardOne(forwardData.getManuscriptId());
+        forwardDataMapper.insert(forwardData);
+    }
+
+    /**
+     * 取消转发
+     * @param forwardData
+     */
+    @Override
+    public void cancelForward(ForwardData forwardData) {
+        manuscriptMapper.cancelForward(forwardData.getManuscriptId());
+        forwardDataMapper.deleteByUser(forwardData);
     }
 
     /**
