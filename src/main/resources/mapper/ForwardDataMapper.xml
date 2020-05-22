@@ -5,41 +5,49 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="manuscript_id" jdbcType="INTEGER" property="manuscriptId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="forwardDate" jdbcType="TIMESTAMP" property="forwardDate" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from forward_data
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insert" parameterType="com.example.amo1.model.ForwardData">
+    insert into forward_data (id, manuscript_id, user_id, 
+      content, forward_date)
+    values (#{id,jdbcType=INTEGER}, #{manuscriptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{forwardDate,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.ForwardData">
+    update forward_data
+    set manuscript_id = #{manuscriptId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, manuscript_id, user_id, content, forward_date
+    from forward_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, manuscript_id, user_id, content, forward_date
+    from forward_data
+  </select>
   <delete id="deleteByUser" parameterType="com.example.amo1.model.ForwardData">
     delete from forward_data
     where manuscript_id = #{manuscriptId,jdbcType=INTEGER} and
       user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.amo1.model.ForwardData">
-    insert into forward_data (id, manuscript_id, user_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{manuscriptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.ForwardData">
-    update forward_data
-    set manuscript_id = #{manuscriptId,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, manuscript_id, user_id
-    from forward_data
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, manuscript_id, user_id
-    from forward_data
-  </select>
   <select id="selectByUser" parameterType="com.example.amo1.model.ForwardData" resultMap="BaseResultMap">
-    select id, manuscript_id, user_id
+    select id, manuscript_id, user_id, content, forward_date
     from forward_data
     where manuscript_id = #{manuscriptId,jdbcType=INTEGER} and
       user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, manuscript_id, user_id, content, forward_date
+    from forward_data
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
 </mapper>

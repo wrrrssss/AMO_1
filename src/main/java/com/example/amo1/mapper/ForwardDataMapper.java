@@ -14,7 +14,9 @@ public interface ForwardDataMapper {
 
     int updateByPrimaryKey(ForwardData record);
 
-    int deleteByUser(ForwardData forwardData);
-
     ForwardData selectByUser(ForwardData forwardData);
+
+    List<ForwardData> selectByUserId(Integer userId);
+
+    int deleteByUser(ForwardData forwardData);
 }

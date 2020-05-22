@@ -6,6 +6,8 @@ import com.example.amo1.service.ForwardDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ForwardDataServiceImpl implements ForwardDataService {
 
@@ -13,7 +15,26 @@ public class ForwardDataServiceImpl implements ForwardDataService {
     private ForwardDataMapper forwardDataMapper;
 
     @Override
-    public ForwardData selectByUser(ForwardData ForwardData) {
-        return forwardDataMapper.selectByUser(ForwardData);
+    public ForwardData selectByUser(ForwardData forwardData) {
+        return forwardDataMapper.selectByUser(forwardData);
+    }
+
+    /**
+     * 发布动态
+     * @param forwardData
+     */
+    @Override
+    public void publishDynamic(ForwardData forwardData) {
+        forwardDataMapper.insert(forwardData);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        forwardDataMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<ForwardData> selAll(Integer userId) {
+        return forwardDataMapper.selectByUserId(userId);
     }
 }
