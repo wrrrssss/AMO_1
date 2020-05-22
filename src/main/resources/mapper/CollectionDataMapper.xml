@@ -10,11 +10,6 @@
     delete from collection_data
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByUser" parameterType="com.example.amo1.model.CollectionData">
-    delete from collection_data
-    where manuscript_id = #{manuscriptId,jdbcType=INTEGER} and
-      user_id = #{userId,jdbcType=INTEGER}
-  </delete>
   <insert id="insert" parameterType="com.example.amo1.model.CollectionData">
     insert into collection_data (id, manuscript_id, user_id
       )
@@ -36,6 +31,11 @@
     select id, manuscript_id, user_id
     from collection_data
   </select>
+  <delete id="deleteByUser" parameterType="com.example.amo1.model.CollectionData">
+    delete from collection_data
+    where manuscript_id = #{manuscriptId,jdbcType=INTEGER} and
+      user_id = #{userId,jdbcType=INTEGER}
+  </delete>
   <select id="selectByUser" parameterType="com.example.amo1.model.CollectionData" resultMap="BaseResultMap">
     select id, manuscript_id, user_id
     from collection_data

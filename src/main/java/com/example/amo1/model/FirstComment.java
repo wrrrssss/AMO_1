@@ -1,5 +1,7 @@
 package com.example.amo1.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class FirstComment {
@@ -21,6 +23,7 @@ public class FirstComment {
     private Integer love;
 
     //评论日期
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date commentdate;
 
     public Integer getId() {

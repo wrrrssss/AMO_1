@@ -1,5 +1,6 @@
 package com.example.amo1.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Mapping;
@@ -43,6 +44,7 @@ public class Manuscript {
     private String cover;
 
     //发布稿件日期
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publishdate;
 
     //稿件内容

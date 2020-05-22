@@ -45,4 +45,13 @@ public interface UserService {
      */
     User selByUsername(String username);
 
+    /**
+     * 根据用户Id查找信息
+     * @param userId
+     * @return
+     */
+    User selByUserId(Integer userId);
+
+
+
 }

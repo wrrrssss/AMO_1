@@ -105,4 +105,14 @@ public class UserController {
         resultMessage.setMessage("删除成功");
         return resultMessage;
     }
+
+    /**
+     * 根据用户id查找用户信息
+     * @param userId
+     * @return
+     */
+    @RequestMapping("selById/{userId}")
+    public User selById(@PathVariable Integer userId) {
+        return userService.selByUserId(userId);
+    }
 }
