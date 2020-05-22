@@ -12,7 +12,7 @@
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from friend
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{user_id,jdbcType=INTEGER} and friend_id = #{friend_id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.amo1.model.Friend">
     insert into friend (id, user_id, friend_id, 
@@ -53,5 +53,11 @@
     select *
     from friend
     where groups_id = #{group_id,jdbcType=INTEGER}
+  </select>
+
+  <select id="isFriend" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from friend
+    where user_id = #{user_id,jdbcType=INTEGER} and friend_id = #{friend_id,jdbcType=INTEGER}
   </select>
 </mapper>

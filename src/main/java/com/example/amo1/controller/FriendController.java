@@ -35,8 +35,9 @@ public class FriendController {
 
     //删除好友
     @RequestMapping(value = "/deleteFriend")
-    public ResultMessage deleteFriend(@RequestParam(value = "id")String id){
-        return friendService.deleteFriend(Integer.parseInt(id));
+    public ResultMessage deleteFriend(@RequestParam(value = "user_id")String user_id,
+                                      @RequestParam(value = "friend_id")String friend_id){
+        return friendService.deleteFriend(Integer.parseInt(user_id),Integer.parseInt(friend_id));
     }
 
     //修改好友分组或者备注名信息
@@ -79,5 +80,12 @@ public class FriendController {
     @RequestMapping(value = "/getFansNumber")
     public int getFansNumber(@RequestParam(value = "user_id")String user_id){
         return friendService.getFansNumber(Integer.parseInt(user_id));
+    }
+
+    //判断两人是否为好友
+    @RequestMapping(value = "/isFriend")
+    public boolean isFriend(@RequestParam(value = "user_id")String user_id,
+                            @RequestParam(value = "friend_id")String friend_id){
+        return friendService.isFriend(Integer.parseInt(user_id),Integer.parseInt(friend_id));
     }
 }

@@ -12,7 +12,7 @@ public interface FriendService {
     ResultMessage addFriend(Friend friend);
 
     //删除好友
-    ResultMessage deleteFriend(int id);
+    ResultMessage deleteFriend(int user_id,int friend_id);
 
     //修改好友分组
     ResultMessage modifyFriend(Friend friend);
@@ -34,4 +34,7 @@ public interface FriendService {
 
     //获取粉丝数
     int getFansNumber(int i);
+
+    //判断两人是否为好友
+    boolean isFriend(int user_id,int friend_id);
 }

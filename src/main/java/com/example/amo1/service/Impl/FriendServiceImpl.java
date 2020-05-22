@@ -31,8 +31,8 @@ public class FriendServiceImpl implements FriendService {
     }
 
     @Override
-    public ResultMessage deleteFriend(int id) {
-        friendMapper.deleteByPrimaryKey(id);
+    public ResultMessage deleteFriend(int user_id,int friend_id) {
+        friendMapper.deleteByPrimaryKey(user_id,friend_id);
         return new ResultMessage(true,"删除成功");
     }
 
@@ -86,5 +86,11 @@ public class FriendServiceImpl implements FriendService {
     @Override
     public int getFansNumber(int i) {
         return friendMapper.getFans(i).size();
+    }
+
+    @Override
+    public boolean isFriend(int user_id, int friend_id) {
+        Friend friend = friendMapper.isFriend(user_id,friend_id);
+        return friend != null;
     }
 }
