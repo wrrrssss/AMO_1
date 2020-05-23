@@ -89,4 +89,10 @@
     set forward = forward - 1
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="searchByTitle" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *
+    from manuscript
+    where title like "%"#{demo,jdbcType=VARCHAR}"%"
+  </select>
 </mapper>

@@ -29,4 +29,6 @@ public interface ManuscriptMapper {
     int addForwardOne(Integer id);
 
     int cancelForward(Integer id);
+
+    List<Manuscript> searchByTitle(String demo);
 }

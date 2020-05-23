@@ -13,4 +13,8 @@ public interface RecommendService {
     List<Manuscript> distanceMatchingRecommend(int user_id);
 
     List<Manuscript> getAll();
+
+    List<Manuscript> getManuscriptByUser(int user_id);
+
+    List<Manuscript> searchByTitle(String demo);
 }

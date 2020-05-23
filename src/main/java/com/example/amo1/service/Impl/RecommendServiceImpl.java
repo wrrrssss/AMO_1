@@ -183,6 +183,16 @@ public class RecommendServiceImpl implements RecommendService {
         return manuscriptMapper.selectAll();
     }
 
+    @Override
+    public List<Manuscript> getManuscriptByUser(int user_id) {
+        return manuscriptMapper.selAll(user_id);
+    }
+
+    @Override
+    public List<Manuscript> searchByTitle(String demo) {
+        return manuscriptMapper.searchByTitle(demo);
+    }
+
     private List<Integer> getAllManuscriptID(int user_id){
         //获取该用户的所有收藏夹
         List<Lists> user_Lists = listsMapper.getAllList(user_id);

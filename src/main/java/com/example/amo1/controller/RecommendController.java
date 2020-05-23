@@ -36,10 +36,22 @@ public class RecommendController {
         return recommendService.distanceMatchingRecommend(Integer.parseInt(user_id));
     }
 
+    //获取所有稿件
     @RequestMapping(value = "/getAllManuscript")
     public List<Manuscript> getAllManuscript(){
         return recommendService.getAll();
     }
 
+    //获取作者的所有稿件
+    @RequestMapping(value = "/getManuscriptByUser")
+    public List<Manuscript> getManuscriptByUser(@RequestParam(value = "user_id")String user_id){
+        return recommendService.getManuscriptByUser(Integer.parseInt(user_id));
+    }
+
+    //匹配标题搜索
+    @RequestMapping(value = "/searchByTitle")
+    public List<Manuscript> searchByTitle(@RequestParam(value = "demo")String demo){
+        return recommendService.searchByTitle(demo);
+    }
 
 }
