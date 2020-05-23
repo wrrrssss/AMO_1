@@ -6,6 +6,7 @@ import com.example.amo1.service.SecondCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class SecondCommentServiceImpl implements SecondCommentService {
 
     @Override
     public void add(SecondComment secondComment) {
+        secondComment.setCommentdate(new Date());
         secondCommentMapper.insert(secondComment);
     }
 
