@@ -11,4 +11,6 @@ public interface RecommendService {
 
     //距离匹配推荐
     List<Manuscript> distanceMatchingRecommend(int user_id);
+
+    List<Manuscript> getAll();
 }

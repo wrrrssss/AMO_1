@@ -1,6 +1,7 @@
 package com.example.amo1.controller;
 
 import com.example.amo1.model.Manuscript;
+import com.example.amo1.service.ManuscriptService;
 import com.example.amo1.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,6 +34,11 @@ public class RecommendController {
     @RequestMapping(value = "/distanceMatchingRecommend")
     public List<Manuscript> distanceMatchingRecommend(@RequestParam(value = "user_id") String user_id){
         return recommendService.distanceMatchingRecommend(Integer.parseInt(user_id));
+    }
+
+    @RequestMapping(value = "/getAllManuscript")
+    public List<Manuscript> getAllManuscript(){
+        return recommendService.getAll();
     }
 
 
