@@ -30,7 +30,7 @@
 
     <delete id="delete" parameterType="com.example.amo1.model.Collect">
         delete from collect
-        where list_id = #{list_id,jdbcType=INTEGER} and manuscript_id = #{manuscript_id,jdbcType=INTEGER}
+        where user_id = #{user_id,jdbcType=INTEGER} and manuscript_id = #{manuscript_id,jdbcType=INTEGER}
     </delete>
 
     <select id="getAllOfList" parameterType="java.lang.Integer" resultType="java.lang.Integer">

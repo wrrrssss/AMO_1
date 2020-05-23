@@ -58,8 +58,8 @@ public class CollectController {
     //移出收藏夹
     @RequestMapping(value = "/moveOutList")
     public ResultMessage moveOutList(@RequestParam(value = "manuscript_id")String manuscript_id,
-                                     @RequestParam(value = "list_id") String list_id){
-        return collectService.moveOutList(Integer.parseInt(manuscript_id),Integer.parseInt(list_id));
+                                     @RequestParam(value = "user_id") String user_id){
+        return collectService.moveOutList(Integer.parseInt(manuscript_id),Integer.parseInt(user_id));
     }
 
     //获得用户的所有收藏夹

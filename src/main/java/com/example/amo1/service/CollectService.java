@@ -26,7 +26,7 @@ public interface CollectService {
     ResultMessage collect(int manuscript_id, int list_id, int user_id);
 
     //取消收藏
-    ResultMessage moveOutList(int manuscript_id, int list_id);
+    ResultMessage moveOutList(int manuscript_id, int user_id);
 
     //获得用户的所有收藏夹
     List<Lists> getAllList(int user_id);

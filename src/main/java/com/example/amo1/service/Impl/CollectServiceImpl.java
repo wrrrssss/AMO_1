@@ -119,8 +119,8 @@ public class CollectServiceImpl implements CollectService {
     }
 
     @Override
-    public ResultMessage moveOutList(int manuscript_id, int list_id) {
-        collectMapper.delete(new Collect(manuscript_id,list_id));
+    public ResultMessage moveOutList(int manuscript_id, int user_id) {
+        collectMapper.delete(new Collect(manuscript_id,user_id));
         return new ResultMessage(true,"删除成功");
     }
 

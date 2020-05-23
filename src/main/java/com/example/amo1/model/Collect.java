@@ -16,9 +16,9 @@ public class Collect {
         this.setUser_id(user_id);
     }
 
-    public Collect(int manuscript_id, int list_id) {
+    public Collect(int manuscript_id, int user_id) {
         this.setManuscript_id(manuscript_id);
-        this.setList_id(list_id);
+        this.setUser_id(user_id);
     }
 
     public int getManuscript_id() {
