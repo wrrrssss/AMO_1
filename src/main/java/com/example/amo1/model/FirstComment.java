@@ -23,7 +23,6 @@ public class FirstComment {
     private Integer love;
 
     //评论日期
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date commentdate;
 
     public Integer getId() {

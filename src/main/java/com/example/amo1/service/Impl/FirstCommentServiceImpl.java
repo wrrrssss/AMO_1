@@ -6,6 +6,7 @@ import com.example.amo1.service.FirstCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class FirstCommentServiceImpl implements FirstCommentService {
 
     @Override
     public void add(FirstComment firstComment) {
+        firstComment.setCommentdate(new Date());
         firstCommentMapper.insert(firstComment);
     }
 

@@ -6,7 +6,7 @@
     <result column="manuscript_id" jdbcType="INTEGER" property="manuscriptId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="forwardDate" jdbcType="TIMESTAMP" property="forwardDate" />
+    <result column="forward_date" jdbcType="TIMESTAMP" property="forwardDate" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from forward_data

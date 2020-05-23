@@ -70,6 +70,9 @@ public class ManuscriptServiceImpl implements ManuscriptService {
         manuscript.setForward(0);
         manuscript.setComment(0);
         manuscript.setCollection(0);
+
+        manuscript.setPublishdate(new Date());
+
         manuscriptMapper.insert(manuscript);
         //解析处理了的html语句
         manuscript.setContent(HtmlUtils.htmlUnescape(temp));

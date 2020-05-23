@@ -6,6 +6,7 @@ import com.example.amo1.service.ForwardDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,6 +26,7 @@ public class ForwardDataServiceImpl implements ForwardDataService {
      */
     @Override
     public void publishDynamic(ForwardData forwardData) {
+        forwardData.setForwardDate(new Date());
         forwardDataMapper.insert(forwardData);
     }
 
