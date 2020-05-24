@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.example.amo1.model.Message">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="send_time" jdbcType="VARCHAR" property="sendTime" />
-    <result column="sendedr_id" jdbcType="INTEGER" property="sendedrId" />
+    <result column="sender_id" jdbcType="INTEGER" property="senderId" />
     <result column="recipient_id" jdbcType="INTEGER" property="recipientId" />
     <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
@@ -13,26 +13,26 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.amo1.model.Message">
-    insert into message (id, send_time, sendedr_id, 
+    insert into message (id, send_time, sender_id,
       recipient_id, content)
-    values (#{id,jdbcType=INTEGER}, #{sendTime,jdbcType=VARCHAR}, #{sendedrId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{sendTime,jdbcType=VARCHAR}, #{senderId,jdbcType=INTEGER},
       #{recipientId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.example.amo1.model.Message">
     update message
     set send_time = #{sendTime,jdbcType=VARCHAR},
-      sendedr_id = #{sendedrId,jdbcType=INTEGER},
+      sender_id = #{senderId,jdbcType=INTEGER},
       recipient_id = #{recipientId,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, send_time, sendedr_id, recipient_id, content
+    select id, send_time, sender_id, recipient_id, content
     from message
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, send_time, sendedr_id, recipient_id, content
+    select id, send_time, sender_id, recipient_id, content
     from message
     where recipient_id = #{user_id,jdbcType=INTEGER}
   </select>

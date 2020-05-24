@@ -90,7 +90,7 @@ public class Manuscript {
         return publishdate;
     }
 
-    public void setPublishdate(Date pulishdate) {
+    public void setPublishdate(Date publishdate) {
         this.publishdate = publishdate;
     }
 
