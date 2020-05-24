@@ -5,7 +5,7 @@ public class Message {
 
     private String sendTime;
 
-    private Integer sendedrId;
+    private Integer senderId;
 
     private Integer recipientId;
 
@@ -27,12 +27,12 @@ public class Message {
         this.sendTime = sendTime == null ? null : sendTime.trim();
     }
 
-    public Integer getSendedrId() {
-        return sendedrId;
+    public Integer getSenderId() {
+        return senderId;
     }
 
-    public void setSendedrId(Integer sendedrId) {
-        this.sendedrId = sendedrId;
+    public void setSenderId(Integer senderId) {
+        this.senderId = senderId;
     }
 
     public Integer getRecipientId() {
