@@ -45,4 +45,10 @@ public class ChatController {
         return chatService.deleteMessage(Integer.parseInt(id));
 
     }
+
+    //获取所有私聊信息
+    @RequestMapping(value = "/getAllMessageOfUser")
+    public List<Chat> getAllMessageOfUser(@RequestParam(value = "user_id")String user_id){
+        return chatService.getAllMessageOfUser(Integer.parseInt(user_id));
+    }
 }

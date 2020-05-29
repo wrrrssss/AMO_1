@@ -39,7 +39,13 @@
   <select id="getAll" parameterType="com.example.amo1.model.Chat" resultMap="BaseResultMap">
     select *
     from chat
-    where (sender_id = #{send_id,jdbcType=INTEGER} and recipient_id = #{recipient_id,jdbcType=INTEGER})
-    or (sender_id = #{recipient_id,jdbcType=INTEGER} and recipient_id = #{send_id,jdbcType=INTEGER})
+    where (sender_id = #{senderId,jdbcType=INTEGER} and recipient_id = #{recipientId,jdbcType=INTEGER})
+    or (sender_id = #{recipientId,jdbcType=INTEGER} and recipient_id = #{senderId,jdbcType=INTEGER})
+  </select>
+
+  <select id="getAllOfUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from chat
+    where sender_id = #{user_id,jdbcType=INTEGER} or recipient_id = #{user_id,jdbcType=INTEGER}
   </select>
 </mapper>

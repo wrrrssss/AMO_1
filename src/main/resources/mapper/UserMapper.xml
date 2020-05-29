@@ -40,7 +40,7 @@
     where username = #{username,jdbcType=VARCHAR}
   </select>
 
-  <select id="getAllUserId">
+  <select id="getAllUserId" resultType="java.lang.Integer">
     select id
     from user
   </select>

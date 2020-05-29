@@ -15,4 +15,6 @@ public interface ChatMapper {
     int updateByPrimaryKey(Chat record);
 
     List<Chat> getAll(Chat record);
+
+    List<Chat> getAllOfUser(Integer user_id);
 }

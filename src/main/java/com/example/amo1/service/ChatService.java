@@ -15,4 +15,7 @@ public interface ChatService {
 
     //删除某条信息
     ResultMessage deleteMessage(int id);
+
+    //获取用户所有私聊信息
+    List<Chat> getAllMessageOfUser(int i);
 }

@@ -31,4 +31,9 @@ public class ChatServiceImpl implements ChatService {
         chatMapper.deleteByPrimaryKey(id);
         return new ResultMessage(true,"删除消息成功");
     }
+
+    @Override
+    public List<Chat> getAllMessageOfUser(int i) {
+        return chatMapper.getAllOfUser(i);
+    }
 }
