@@ -93,4 +93,9 @@ public class FriendServiceImpl implements FriendService {
         Friend friend = friendMapper.isFriend(user_id,friend_id);
         return friend != null;
     }
+
+    @Override
+    public List<Integer> getAllFansId(int i) {
+        return friendMapper.getAllFansId(i);
+    }
 }

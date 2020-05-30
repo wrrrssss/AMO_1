@@ -60,4 +60,10 @@
     from friend
     where user_id = #{user_id,jdbcType=INTEGER} and friend_id = #{friend_id,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllFansId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select user_id
+    from friend
+    where friend_id = #{i,jdbcType=INTEGER}
+  </select>
 </mapper>

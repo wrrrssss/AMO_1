@@ -88,4 +88,10 @@ public class FriendController {
                             @RequestParam(value = "friend_id")String friend_id){
         return friendService.isFriend(Integer.parseInt(user_id),Integer.parseInt(friend_id));
     }
+
+    //获取所有粉丝id
+    @RequestMapping(value = "/getAllFansId")
+    public List<Integer> getAllFansId(@RequestParam(value = "user_id")String user_id){
+        return friendService.getAllFansId(Integer.parseInt(user_id));
+    }
 }

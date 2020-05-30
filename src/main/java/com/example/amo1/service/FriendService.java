@@ -37,4 +37,6 @@ public interface FriendService {
 
     //判断两人是否为好友
     boolean isFriend(int user_id,int friend_id);
+
+    List<Integer> getAllFansId(int i);
 }

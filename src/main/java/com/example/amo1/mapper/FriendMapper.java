@@ -21,4 +21,6 @@ public interface FriendMapper {
     List<Friend> selectByGroup(Integer group_id);
 
     Friend isFriend(@Param("user_id") Integer user_id,@Param("friend_id") Integer friend_id);
+
+    List<Integer> getAllFansId(Integer i);
 }
