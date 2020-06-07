@@ -6,10 +6,11 @@
       <div class="author-box">
         <div class="row-1">
           <div style="float: left">
-            <el-avatar v-if="avatar" :src="require('../../assets/'+avatar+'.JPG')"></el-avatar>
-            <el-avatar v-else icon="el-icon-user-solid"></el-avatar>
+            <a :href="'/#/space/'+article.userId">
+              <el-avatar  :src="require('../../assets/'+avatar+'.JPG')"></el-avatar>
+            </a>
           </div>
-          <a>{{article.username}}</a>
+          <el-link :href="'/#/space/'+article.userId" :underline="false">{{article.username}}</el-link>
         </div>
         <div class="row-2">
           <span>粉丝数：{{numOfFans}}</span><br>
@@ -44,7 +45,7 @@
           <el-button type="primary" size="mini" icon="el-icon-thumb" round @click="thumbUping" v-else="loadInfo.thumbUp">
             {{article.love}} 点赞
           </el-button>
-          <el-button type="success" size="mini" icon="el-icon-link" round @click="forwarding" v-if="loadInfo.forward">
+          <el-button type="success" size="mini" icon="el-icon-link" round v-if="loadInfo.forward">
             {{article.forward}} 已转发
           </el-button>
           <el-button type="primary" size="mini" icon="el-icon-link" round @click="forwarding" v-else="loadInfo.forward">
@@ -125,6 +126,21 @@
         <el-button type="primary" @click="submitGroup('focus')">确 定</el-button>
       </span>
     </el-dialog>
+
+    <el-dialog title="转发" :visible.sync="dialogVisible2" width="30%">
+      <el-form :model="forward" :rules="rules" ref="forward">
+        <el-form-item label="动态内容" prop="content">
+          <el-input type="textarea" :row="2" v-model="forward.content">
+
+          </el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible2 = false">取 消</el-button>
+        <el-button type="primary" @click="submitDynamic('forward')">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -179,6 +195,7 @@
       commenter:[],
       dialogVisible:false,
       dialogVisible1:false,
+      dialogVisible2:false,
       /*目标收藏夹*/
       targetCollection:{
         manuscript_id:'',
@@ -194,20 +211,28 @@
         remarks:'',
         groupsId:'',
       },
+
+      forward:{
+        userId:'',
+        manuscriptId:'',
+        content:'',
+        forwardDate:'',
+      },
+
       /*用户全部好友分组*/
       groups:[],
       /*用户全部收藏夹*/
       collections:[],
       rules:{
         content:[
-          { required: true, message: '请输入评论内容', trigger: 'blur' },
+          { required: true, message: '请输入内容', trigger: 'blur' },
         ],
         targetCollection:[
           { required: true, message: '请选择收藏夹', trigger: 'change' },
         ],
         groupsId:[
           { required: true, message: '请选择关注分组', trigger: 'change' },
-        ]
+        ],
       },
     }
   },
@@ -293,15 +318,33 @@
       if(this.loadInfo.thumbUp==true){
         let url = `http://localhost:8088/manuscript/cancelLove`
         axios.post(url,tmp)
+        let url1 = `http://localhost:8088/message/sendMessage`
+        let messageForm ={
+          senderId:JSON.parse(sessionStorage.getItem('form')).id,
+          recipientId:this.article.userId,
+          content:JSON.parse(sessionStorage.getItem('form')).username+'给您的文章《'+this.article.title+'》取消了点赞'
+        }
+        axios.post(url1,messageForm)
       }
       else {
         let url = `http://localhost:8088/manuscript/loveAddOne`
         axios.post(url,tmp)
+        let url1 = `http://localhost:8088/message/sendMessage`
+        let messageForm ={
+          senderId:JSON.parse(sessionStorage.getItem('form')).id,
+          recipientId:this.article.userId,
+          content:JSON.parse(sessionStorage.getItem('form')).username+'给您的文章《'+this.article.title+'》点赞'
+        }
+        axios.post(url1,messageForm)
       }
       this.$router.go(0)
     },
     forwarding(){
+      this.forward.userId=JSON.parse(sessionStorage.getItem('form')).id
+      this.forward.manuscriptId=this.article.id
+      this.forward.forwardDate=makeDate(new Date())
 
+      this.dialogVisible2=true
     },
     collecting(){
       this.targetCollection.manuscript_id=this.article.id
@@ -325,6 +368,14 @@
         }
         let url1 = `http://localhost:8088/manuscript/cancelCollection`
         axios.post(url1,tmp)
+        /*消息*/
+        let url3 = `http://localhost:8088/message/sendMessage`
+        let messageForm ={
+          senderId:JSON.parse(sessionStorage.getItem('form')).id,
+          recipientId:this.article.userId,
+          content:JSON.parse(sessionStorage.getItem('form')).username+'取消收藏您的文章《'+this.article.title+'》'
+        }
+        axios.post(url3,messageForm)
         let url2 =`http://localhost:8088/collect/moveOutList`
         axios.get(url2,{
           params:{
@@ -348,6 +399,13 @@
           }
           let url1 = `http://localhost:8088/manuscript/collectionAddOne`
           axios.post(url1,tmp)
+          let url2 = `http://localhost:8088/message/sendMessage`
+          let messageForm ={
+            senderId:JSON.parse(sessionStorage.getItem('form')).id,
+            recipientId:this.article.userId,
+            content:JSON.parse(sessionStorage.getItem('form')).username+'收藏了您的文章《'+this.article.title+'》'
+          }
+          axios.post(url2,messageForm)
           let url=`http://localhost:8088/collect/collect`
           axios.get(url,{
             params:{
@@ -390,6 +448,7 @@
           })
         }
         else {
+
           return false;
         }
       })
@@ -405,6 +464,14 @@
       this.dialogVisible1=true
     },
     cancelFocus(){
+      let url1 = `http://localhost:8088/message/sendMessage`
+      let messageForm ={
+        senderId:JSON.parse(sessionStorage.getItem('form')).id,
+        recipientId:this.article.userId,
+        content:JSON.parse(sessionStorage.getItem('form')).username+'取消关注了您'
+      }
+      axios.post(url1,messageForm)
+
       let url=`http://localhost:8088/friend/deleteFriend`
       axios.get(url,{
         params:{
@@ -422,6 +489,14 @@
     submitGroup(formName){
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          let url1 = `http://localhost:8088/message/sendMessage`
+          let messageForm ={
+            senderId:JSON.parse(sessionStorage.getItem('form')).id,
+            recipientId:this.article.userId,
+            content:JSON.parse(sessionStorage.getItem('form')).username+'关注了您'
+          }
+          axios.post(url1,messageForm)
+
           let url=`http://localhost:8088/friend/addFriend`
           axios.post(url,this.focus).then(res=>{
             if(res.data.success==true){
@@ -436,8 +511,36 @@
           return false;
         }
       })
-
     },
+    submitDynamic(formName){
+      console.log(this.forward)
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          let url1 = `http://localhost:8088/message/sendMessage`
+          let messageForm ={
+            senderId:JSON.parse(sessionStorage.getItem('form')).id,
+            recipientId:this.article.userId,
+            content:JSON.parse(sessionStorage.getItem('form')).username+'转发了您的文章《'+this.article.title+'》'
+          }
+          axios.post(url1,messageForm)
+
+          let url2 = `http://localhost:8088/manuscript/forwardAddOne`
+          axios.post(url2,this.forward).then(res=>{
+            console.log(res)
+            if(res.data.success==true){
+              alert('转发成功')
+              this.$router.go(0)
+            }
+            else
+              alert('转发失败')
+          })
+
+        }
+        else {
+          return false;
+        }
+      })
+    }
   }
 }
 </script>

@@ -1,19 +1,12 @@
 <template>
-  <el-container>
-    <el-aside width="200px">
-      <el-menu>
-        <el-menu-item v-for="(item,i) in allFriends" :key="i">
-          <router-link :to="{path:'/space/message/mymessage/'+item,params: {id:item}}"
-                       style="text-decoration: none">
-            {{item}}
-          </router-link>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
-    <el-main>
-      <router-view></router-view>
-    </el-main>
-  </el-container>
+  <div>
+    <div v-for="(item,i) in messages" :key="i" style="background-color: #E6E6FA;height: 50px;margin: 5px;line-height: 50px">
+      <div style="float: left;width: auto;height: auto;line-height: 50px">
+        {{item.sendTime}}
+      </div>
+      <p>{{item.content}}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,45 +15,20 @@
       name: "MyMessage",
       data(){
         return{
-          allMessages:[],
-          allFriends:[],
+          messages:[],
         }
       },
-      created() {
-
+      mounted() {
+        let id = JSON.parse(sessionStorage.getItem('form')).id
         let url =`http://localhost:8088/message/getAllMessage`
-        let userId=JSON.parse(sessionStorage.getItem('form')).id
-        this.allFriends.push(userId)
         axios.get(url,{
           params:{
-            user_id:userId
+            user_id:id
           }
         }).then(res=>{
-          this.allMessages=res.data
-          for (let i in this.allMessages){
-            if(this.allMessages[i].senderId==this.allFriends[0]){
-              if(this.allFriends.includes(this.allMessages[i].recipientId)==false)
-                this.allMessages[i].recipientId
-                this.allFriends.push(this.allMessages[i].recipientId)
-            }
-            else{
-              if(this.allFriends.includes(this.allMessages[i].senderId)==false)
-                this.allFriends.push(this.allMessages[i].senderId)
-            }
-          }
-          this.allFriends.shift()
+          this.messages=res.data
+          console.log(this.messages)
         })
-      },
-      methods:{
-        getMessages(id){
-          let tmp=[]
-          for (let i in this.allMessages){
-            if(this.allMessages[i].senderId==id||this.allMessages[i].recipientId==id)
-              tmp.push(this.allMessages[i])
-          }
-          /*console.log(tmp)*/
-          return tmp
-        }
       }
     }
 </script>

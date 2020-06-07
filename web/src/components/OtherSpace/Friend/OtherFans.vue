@@ -5,16 +5,16 @@
         <a class="title">{{item.username}}</a>
       </div>
       <div class="focus-action">
-            <el-button @click="sendMessage(i)" style="margin-right: 100px">发消息</el-button>
+        <el-button @click="sendMessage(i)" style="margin-right: 100px">发消息</el-button>
       </div>
-  </div>
+    </div>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
   export default {
-    name: 'Fans',
+    name: 'OtherFans',
     data() {
       return {
         fans: [],
@@ -24,7 +24,7 @@
       let url = `http://localhost:8088/friend/getAllFansId`
       axios.get(url, {
         params: {
-          user_id: JSON.parse(sessionStorage.getItem('form')).id
+          user_id: JSON.parse(sessionStorage.getItem('other')).id
         }
       }).then(res => {
         console.log(res)

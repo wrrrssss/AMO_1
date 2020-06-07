@@ -20,14 +20,9 @@
             </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-        </el-menu>
-        <el-menu>
-          <el-submenu index="1">
-          <template slot="title">我的粉丝</template>
-            <el-menu-item index="1-1">
-              <router-link to="/space/friend/fans" style="text-decoration: none"><template slot="title"><i class="el-icon-s-custom"></i>我的粉丝</template></router-link>
-            </el-menu-item>
-          </el-submenu>
+          <el-menu-item index="2">
+              <router-link to="/space/friend/fans" style="text-decoration: none">我的粉丝</router-link>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main>
@@ -84,8 +79,16 @@
       }
     },
     mounted () {
-
-      this.groups=JSON.parse(sessionStorage.getItem('group'))
+      let url1 = `http://localhost:8088/friend/getAllGroup`
+      axios.get(url1,{
+        params:{
+          user_id:JSON.parse(sessionStorage.getItem('form')).id
+        }
+      }).then(res=>{
+        this.groups=res.data
+        let group = JSON.stringify(this.groups)
+        sessionStorage.setItem('group',group)
+      })
     },
     methods:{
       addGroup(){
