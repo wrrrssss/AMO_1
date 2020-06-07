@@ -142,7 +142,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let url=`http://localhost:8088/collect/createFavoritesList`
-          axios.post(url,this.tmpForm).then(res=>{
+          axios.post(url,this.createForm).then(res=>{
             if(res.data.success==true){
               alert("修改成功")
               this.$router.go(0)

@@ -1,25 +1,30 @@
 <template>
-  <el-row>
-    <el-col :span="6" v-for="(info,i) in collectionInfo" :key="i">
-      <el-card :body-style="{ padding: '0px'}">
-        <div class="image">
-          <el-image :src="require('../../../assets/'+info.cover+'.JPG')" fit="contain">
-          </el-image>
-        </div>
-        <div style="padding: 14px;">
-          <p>{{info.title}}</p>
-           <time>{{info.publishdate}}</time>
-          <el-dropdown placement="bottom-start">
-            <span class="el-dropdown-link"><i class="el-icon-arrow-down el-icon--right"></i></span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click.native="noCollection(i)">取消收藏</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
-
-      </el-card>
-    </el-col>
-  </el-row>
+  <div>
+    <div v-if="isEmpty">
+      <h2>收藏夹为空</h2>
+    </div>
+    <div v-else>
+      <el-row>
+        <el-col :span="6" v-for="(info,i) in collectionInfo" :key="i">
+          <el-card :body-style="{ padding: '0px'}">
+            <div class="image">
+              <el-image :src="require('../../../assets/'+info.cover+'.JPG')" fit="contain"></el-image>
+            </div>
+            <div style="padding: 14px;">
+              <p>{{info.title}}</p>
+              <time>{{info.publishdate}}</time>
+              <el-dropdown placement="bottom-start">
+                <span class="el-dropdown-link"><i class="el-icon-arrow-down el-icon--right"></i></span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item @click.native="noCollection(i)">取消收藏</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -31,6 +36,7 @@
         collectionId:'',
         collectionInfo:[],
         dialogVisible:false,
+        isEmpty:true,
       }
     },
     mounted () {
@@ -41,8 +47,9 @@
           list_id:this.collectionId
         }
       }).then(res=>{
-        console.log(res)
         this.collectionInfo=res.data
+        if(this.collectionInfo.length!=0)
+          this.isEmpty=false
       })
     },
     methods:{

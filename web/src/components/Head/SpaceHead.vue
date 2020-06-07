@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header style="min-width: 760px">
     <div class="user-list">
       <el-menu default-active="activeIndex" mode="horizontal" style="height: 52px" @select="handleSelect">
         <el-menu-item index="1"><router-link to="/space/message"  style="font-size: 18px;text-decoration: none">消息</router-link></el-menu-item>

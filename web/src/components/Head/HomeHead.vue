@@ -14,8 +14,8 @@
           <div class="nav-user-center">
               <div class="head-image"></div>
               <div class="user-list">
-                <el-menu mode="horizontal" style="height: 52px; margin: 0 auto;border: 0">
-                  <el-menu-item><router-link to="/space/message" target='_blank' style="font-size: 18px;text-decoration: none">消息</router-link></el-menu-item>
+                <el-menu mode="horizontal" style="height: 52px; margin: 0 auto;border: 0" v-if="isLog">
+                  <el-menu-item><router-link to="/space/message" target='_blank' style="font-size: 18px;text-decoration: none" >消息</router-link></el-menu-item>
                   <el-menu-item><router-link to="/space/dynamics" target='_blank' style="font-size: 18px;text-decoration: none">动态</router-link></el-menu-item>
                   <el-menu-item><router-link to="/space/collections" target='_blank' style="font-size: 18px;text-decoration: none">收藏</router-link></el-menu-item>
                   <el-menu-item><router-link to="/space/manuscript" target='_blank' style="font-size: 18px;text-decoration: none">投稿</router-link></el-menu-item>
@@ -93,6 +93,7 @@
   .hp-header{
     z-index: 1;
     width: 100%;
+    min-width: 1026px;
     height: 56px;
   }
   .nav-amo{
@@ -101,12 +102,12 @@
   }
   .nav-search-box{
     margin: 0 10px;
-    width: 500px;
+    width: 400px;
     transition: width .3s;
     float: left;
   }
   .nav-user-center{
-    float: left;
+    float: right;
   }
   .user-con signin{
     float: left;
